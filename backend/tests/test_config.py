@@ -11,7 +11,7 @@ def test_settings_defaults():
     """Verify default configuration attributes are properly loaded."""
     s = Settings()
     assert s.PROJECT_NAME == "NeuroGraph AI"
-    assert s.PHASE == "Phase 0 — Foundation"
+    assert "Phase 1" in s.PHASE
     assert s.PORT == 8000
     assert s.DEBUG is True
     assert "cns" in s.NEUPRINT_DATASET.lower()

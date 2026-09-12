@@ -16,6 +16,7 @@ from .config import settings
 from .graph.engine import graph_engine
 from .graph.connectome_data import SHOWCASE_PRESETS, NEURON_DATABASE
 from .agents.orchestrator import orchestrator
+from .connectome import neuprint_client
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -88,6 +89,7 @@ def root(request: Request):
 def health_check():
     """System health check and diagnostic status."""
     stats = graph_engine.get_statistics()
+    connectome_status = neuprint_client.check_health(timeout=4.0)
     return {
         "status": "healthy",
         "platform": settings.PROJECT_NAME,
@@ -98,10 +100,23 @@ def health_check():
         "subsystems": {
             "api": "operational",
             "configuration": "valid",
-            "connectome_source": "Phase 1 Pending (neuPrint Male CNS v1.0)"
+            "connectome": {
+                "connected": connectome_status.connected,
+                "server": connectome_status.server,
+                "dataset": connectome_status.dataset,
+                "authenticated": connectome_status.authenticated,
+                "api_version": connectome_status.api_version,
+                "message": connectome_status.message
+            }
         },
         "graph_statistics": stats
     }
+
+
+@app.get("/api/v1/connectome/status")
+def connectome_status():
+    """Detailed live connectivity and authentication status for Male CNS connectome."""
+    return neuprint_client.check_health(timeout=6.0).model_dump()
 
 
 @app.get("/api/info")
@@ -114,15 +129,15 @@ def platform_info():
         "phase": settings.PHASE,
         "environment": settings.ENVIRONMENT,
         "source_of_truth": "Drosophila Male CNS Connectome (v1.0)",
-        "connectome_interface": "neuprint-python / Janelia neuPrint API (Scheduled for Phase 1)",
+        "connectome_interface": "neuprint-python / Janelia neuPrint API (Active in Phase 1)",
         "evidence_tiers": [
-            "Tier A: Observed Connectome Evidence (Male CNS v1.0)",
+            "Tier A: Observed Connectome Evidence (Male CNS v1.0 via neuPrint)",
             "Tier B: Published Literature Evidence (Europe PMC / PubMed)",
             "Tier C: Computational Inference (Deterministic Graph Algorithms / In-Silico Ablation)"
         ],
         "roadmap": {
-            "current_phase": "Phase 0 — Project Architecture and Repository Foundation",
-            "next_phase": "Phase 1 — Real Male CNS Connectome Integration"
+            "current_phase": "Phase 1 — Real Male CNS Connectome Integration",
+            "next_phase": "Phase 2 — Connectome Query Layer"
         }
     }
 

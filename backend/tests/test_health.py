@@ -16,7 +16,7 @@ def test_root_endpoint_metadata():
     assert response.status_code == 200
     data = response.json()
     assert data["platform"] == "NeuroGraph AI"
-    assert data["phase"] == "Phase 0 — Foundation"
+    assert data["phase"] == settings.PHASE
     assert data["status"] == "operational"
     assert "endpoints" in data
     assert data["endpoints"]["health"] == "/api/health"
@@ -30,10 +30,11 @@ def test_health_endpoint():
     data = response.json()
     assert data["status"] == "healthy"
     assert data["platform"] == settings.PROJECT_NAME
-    assert data["phase"] == "Phase 0 — Foundation"
+    assert data["phase"] == settings.PHASE
     assert "subsystems" in data
     assert data["subsystems"]["api"] == "operational"
     assert data["subsystems"]["configuration"] == "valid"
+    assert "connectome" in data["subsystems"]
     assert "timestamp" in data
 
 
@@ -57,5 +58,5 @@ def test_platform_info_endpoint():
     assert "Tier A" in data["evidence_tiers"][0]
     assert "Tier B" in data["evidence_tiers"][1]
     assert "Tier C" in data["evidence_tiers"][2]
-    assert data["roadmap"]["current_phase"] == "Phase 0 — Project Architecture and Repository Foundation"
-    assert data["roadmap"]["next_phase"] == "Phase 1 — Real Male CNS Connectome Integration"
+    assert data["roadmap"]["current_phase"] == "Phase 1 — Real Male CNS Connectome Integration"
+    assert data["roadmap"]["next_phase"] == "Phase 2 — Connectome Query Layer"

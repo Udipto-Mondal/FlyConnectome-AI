@@ -8,8 +8,8 @@ This document tracks the phased engineering progression of **NeuroGraph AI** in 
 
 | Phase | Title | Status | Primary Focus |
 | :---: | :--- | :---: | :--- |
-| **0** | **Project Architecture & Foundation** | **In Progress** | Repository foundation, config, health endpoints, documentation, testing setup |
-| **1** | Real Male CNS Connectome Integration | *Planned* | neuPrint API client, official Male CNS v1.0 data schemas, authentication |
+| **0** | **Project Architecture & Foundation** | **COMPLETE** | Repository foundation, config, health endpoints, documentation, testing setup |
+| **1** | **Real Male CNS Connectome Integration** | **COMPLETE** | neuPrint API client, official Male CNS v1.0 data schemas, authentication |
 | **2** | Connectome Query Layer | *Planned* | Type-safe neuron lookups, synaptic edge queries, ROI spatial filters |
 | **3** | Graph Engine & Graph Algorithms | *Planned* | Directed graph traversals, Dijkstra weighted distance, centrality metrics |
 | **4** | Graph-RAG Retrieval System | *Planned* | Subgraph extraction, relevance scoring, connectome context formatting |
@@ -41,4 +41,25 @@ This document tracks the phased engineering progression of **NeuroGraph AI** in 
 - [x] Documentation (`docs/architecture.md`, `docs/phases.md`, `docs/data_dictionary.md`) created.
 - [x] Backend test suite passing 100%.
 - [x] Honest README updated.
-- [ ] User review and approval obtained before Phase 1.
+- [x] User review and approval obtained before Phase 1.
+
+---
+
+## Phase 1: Real Male CNS Connectome Integration
+
+### Objectives
+- Integrate with official Janelia neuPrint API (`https://neuprint.janelia.org`) and install `neuprint-python`.
+- Establish type-safe Pydantic models for real Male CNS connectome data (`NeuronModel`, `SynapticConnectionModel`, `ProvenanceRecord`, `ConnectomeHealthStatus`).
+- Implement `NeuPrintClient` with authentication handling, live health pinging, Cypher query execution, and disk caching.
+- Enforce strict scientific failure transparency: unauthenticated or failing queries return explicit provenance without returning fake data.
+- Wire live connectome health status to `/api/health`, `/api/v1/health`, and `/api/v1/connectome/status`.
+- Provide automated unit and integration tests for connectome client, models, and API endpoints.
+
+### Exit Criteria
+- [x] `NeuPrintClient` implemented with live health check against `https://neuprint.janelia.org/api/version`.
+- [x] Pydantic schemas created in `backend/app/connectome/models.py`.
+- [x] Cypher query execution with local caching and provenance tracking implemented.
+- [x] Dedicated `/api/v1/connectome/status` endpoint functional.
+- [x] Subsystem health status updated in `/api/health`.
+- [x] Automated test suite passing (25/25 tests).
+- [ ] User review and approval obtained before Phase 2.
