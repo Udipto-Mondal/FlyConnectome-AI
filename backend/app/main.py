@@ -4,11 +4,12 @@ High-throughput REST and discovery endpoints connecting frontend to Graph-RAG an
 """
 
 import os
-from typing import List, Optional
-from fastapi import FastAPI, HTTPException
+from datetime import datetime, timezone
+from typing import List, Optional, Dict, Any
+from fastapi import FastAPI, HTTPException, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel
 
 from .config import settings
@@ -19,7 +20,7 @@ from .agents.orchestrator import orchestrator
 app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
-    description="Autonomous Multi-Agent Graph-RAG & Discovery Engine for the Google Fruit Fly Connectome."
+    description="Autonomous Multi-Agent Graph-RAG for Neural Circuit Discovery."
 )
 
 # Enable CORS for frontend integration
@@ -34,9 +35,9 @@ app.add_middleware(
 # Mount static frontend if built
 frontend_dist = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../frontend/dist"))
 if os.path.exists(frontend_dist):
-    app.mount("/assets", StaticFiles(directory=os.path.join(frontend_dist, "assets")), name="assets")
-
-
+    assets_dir = os.path.join(frontend_dist, "assets")
+    if os.path.exists(assets_dir):
+        app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
 
 
 class DiscoveryRequest(BaseModel):
@@ -50,46 +51,91 @@ class AblationRequest(BaseModel):
 
 
 @app.get("/")
-def root():
+def root(request: Request):
+    """
+    Root endpoint. Returns HTML frontend if built and requested by browser,
+    otherwise returns platform architectural status and API metadata.
+    """
+    accept_header = request.headers.get("accept", "")
     index_file = os.path.join(frontend_dist, "index.html")
-    if os.path.exists(index_file):
+    if "text/html" in accept_header and os.path.exists(index_file):
         return FileResponse(index_file)
+
     return {
         "platform": settings.PROJECT_NAME,
         "version": settings.VERSION,
+        "phase": settings.PHASE,
         "status": "operational",
-        "description": "Google Fruit Fly Connectome Multi-Agent Graph-RAG Engine",
+        "description": "Autonomous Multi-Agent Graph-RAG for Neural Circuit Discovery",
+        "canonical_dataset": "Drosophila melanogaster Male CNS Connectome (v1.0)",
+        "docs_url": "/docs",
         "endpoints": {
-            "discover": "/api/discover",
-            "ablate": "/api/ablate",
+            "health": "/api/health",
+            "v1_health": "/api/v1/health",
+            "info": "/api/info",
+            "v1_info": "/api/v1/info",
             "presets": "/api/presets",
             "neurons": "/api/neurons",
             "stats": "/api/stats",
-            "health": "/api/health"
+            "discover": "/api/discover",
+            "ablate": "/api/ablate"
         }
     }
 
 
-
 @app.get("/api/health")
+@app.get("/api/v1/health")
 def health_check():
+    """System health check and diagnostic status."""
     stats = graph_engine.get_statistics()
     return {
         "status": "healthy",
+        "platform": settings.PROJECT_NAME,
         "version": settings.VERSION,
+        "phase": settings.PHASE,
+        "environment": settings.ENVIRONMENT,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "subsystems": {
+            "api": "operational",
+            "configuration": "valid",
+            "connectome_source": "Phase 1 Pending (neuPrint Male CNS v1.0)"
+        },
         "graph_statistics": stats
+    }
+
+
+@app.get("/api/info")
+@app.get("/api/v1/info")
+def platform_info():
+    """Architectural metadata, current development phase, and provenance specification."""
+    return {
+        "platform": settings.PROJECT_NAME,
+        "version": settings.VERSION,
+        "phase": settings.PHASE,
+        "environment": settings.ENVIRONMENT,
+        "source_of_truth": "Drosophila Male CNS Connectome (v1.0)",
+        "connectome_interface": "neuprint-python / Janelia neuPrint API (Scheduled for Phase 1)",
+        "evidence_tiers": [
+            "Tier A: Observed Connectome Evidence (Male CNS v1.0)",
+            "Tier B: Published Literature Evidence (Europe PMC / PubMed)",
+            "Tier C: Computational Inference (Deterministic Graph Algorithms / In-Silico Ablation)"
+        ],
+        "roadmap": {
+            "current_phase": "Phase 0 — Project Architecture and Repository Foundation",
+            "next_phase": "Phase 1 — Real Male CNS Connectome Integration"
+        }
     }
 
 
 @app.get("/api/presets")
 def get_presets():
-    """Retrieve curated showcase research presets."""
+    """Retrieve curated showcase research presets (Phase 0 development fixture)."""
     return SHOWCASE_PRESETS
 
 
 @app.get("/api/neurons")
 def get_neurons(search: Optional[str] = None):
-    """Retrieve or search neurons in the connectome database."""
+    """Retrieve or search neurons in the connectome development fixture."""
     if search:
         return graph_engine.search_neurons(search)
     return NEURON_DATABASE
@@ -102,13 +148,14 @@ def get_stats():
 
 
 @app.post("/api/discover")
-def discover_circuit(req: DiscoveryRequest):
+def discover_circuit(req: DiscoveryRequest, response: Response):
     """
-    Run full multi-agent discovery pipeline:
-    Planner -> Graph-RAG -> Literature Validation -> Synthesis Report.
+    Run multi-agent discovery pipeline.
+    NOTICE: Phase 0 uses synthetic development fixture. Full Male CNS integration occurs in Phase 1-4.
     """
     if not req.query.strip():
         raise HTTPException(status_code=400, detail="Query cannot be empty.")
+    response.headers["X-NeuroGraph-Data-Tier"] = "Phase-0-Synthetic-Fixture"
     try:
         result = orchestrator.run_discovery_pipeline(req.query)
         return result
@@ -117,12 +164,14 @@ def discover_circuit(req: DiscoveryRequest):
 
 
 @app.post("/api/ablate")
-def run_ablation(req: AblationRequest):
+def run_ablation(req: AblationRequest, response: Response):
     """
     Simulate in-silico neuronal knockout and calculate circuit severance metrics.
+    NOTICE: Phase 0 computational perturbation demo. Formal graph engine ablation is Phase 8.
     """
     if not req.silenced_ids:
         raise HTTPException(status_code=400, detail="Must specify at least one neuron ID to silence.")
+    response.headers["X-NeuroGraph-Data-Tier"] = "Phase-0-Synthetic-Fixture"
     try:
         result = graph_engine.simulate_ablation(
             silenced_ids=req.silenced_ids,
@@ -136,4 +185,4 @@ def run_ablation(req: AblationRequest):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("app.main:app", host=settings.HOST, port=settings.PORT, reload=settings.DEBUG)
