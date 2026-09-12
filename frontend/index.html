@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeuroGraph AI — Autonomous Google Fly Connectome Discovery</title>
+  <meta name="description" content="Research-grade Multi-Agent Graph-RAG discovery platform for the Google Fruit Fly Connectome. Trace 3D neural circuits, simulate neuronal ablations, and generate scientific reports.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+  <div id="app" class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-group">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3" stroke="#00f0ff" fill="#00f0ff" fill-opacity="0.3"/>
+            <circle cx="4" cy="7" r="2" stroke="#00f0ff"/>
+            <circle cx="20" cy="7" r="2" stroke="#ff0055"/>
+            <circle cx="4" cy="17" r="2" stroke="#ffb703"/>
+            <circle cx="20" cy="17" r="2" stroke="#06d6a0"/>
+            <line x1="6" y1="8" x2="10" y2="11" stroke="#00f0ff" stroke-dasharray="2 2"/>
+            <line x1="18" y1="8" x2="14" y2="11" stroke="#ff0055" stroke-dasharray="2 2"/>
+            <line x1="6" y1="16" x2="10" y2="13" stroke="#ffb703" stroke-dasharray="2 2"/>
+            <line x1="18" y1="16" x2="14" y2="13" stroke="#06d6a0" stroke-dasharray="2 2"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="brand-title">NEUROGRAPH <span class="brand-accent">AI</span></h1>
+          <p class="brand-subtitle">Autonomous Graph-RAG & Discovery Engine for Google Fly Connectome</p>
+        </div>
+      </div>
+
+      <div class="header-badges">
+        <div class="badge pulse-badge">
+          <span class="status-dot"></span>
+          <span id="engineStatusText">Graph-RAG Engine Active</span>
+        </div>
+        <div class="badge stat-badge">
+          <span>Male CNS 2026</span>
+          <span class="badge-separator">•</span>
+          <span id="statsNeuronsCount">166k+ Neurons</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Query Showcase Bar -->
+    <section class="query-section glass-panel">
+      <div class="search-bar-wrapper">
+        <div class="search-input-box">
+          <svg class="search-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input 
+            type="text" 
+            id="queryInput" 
+            placeholder="Ask anything: e.g. 'Trace visual looming escape circuit to jump motor neurons. What if Giant Fiber is knocked out?'" 
+            autocomplete="off"
+          />
+          <button id="discoverBtn" class="btn btn-primary">
+            <span class="btn-text">Discover Circuit</span>
+            <div id="btnSpinner" class="spinner hidden"></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Presets for Recruiters -->
+      <div class="presets-container">
+        <span class="presets-label">Showcase Benchmark Presets:</span>
+        <div id="presetsList" class="presets-tags">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Workspace -->
+    <main class="main-workspace">
+      <!-- Left Column: 3D Visualization & Ablation Studio -->
+      <div class="column left-col">
+        <!-- 3D Circuit Canvas Card -->
+        <div class="card circuit-card glass-panel">
+          <div class="card-header">
+            <div class="card-title-group">
+              <h2 class="card-title">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                  <polyline points="2 17 12 22 22 17"/>
+                  <polyline points="2 12 12 17 22 12"/>
+                </svg>
+                3D Neural Circuit Topology
+              </h2>
+              <span id="circuitSubtitle" class="card-badge">Visual Looming Axis</span>
+            </div>
+            <div class="canvas-controls">
+              <button id="toggleAutoRotateBtn" class="control-btn" title="Toggle Auto Rotation">
+                <span>Auto-Rotate: ON</span>
+              </button>
+              <button id="resetCamBtn" class="control-btn" title="Reset View">
+                <span>Reset View</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="canvas-wrapper">
+            <canvas id="circuitCanvas"></canvas>
+            <div id="canvasTooltip" class="canvas-tooltip hidden"></div>
+            
+            <!-- Circuit Legend -->
+            <div class="circuit-legend">
+              <div class="legend-item"><span class="legend-color visual"></span> Visual Sensory</div>
+              <div class="legend-item"><span class="legend-color relay"></span> Central Relay / Giant Fiber</div>
+              <div class="legend-item"><span class="legend-color compass"></span> Compass Navigation</div>
+              <div class="legend-item"><span class="legend-color motor"></span> Motor / VNC Output</div>
+              <div class="legend-item"><span class="legend-color dimorphic"></span> Sex-Dimorphic (P1)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- In-Silico Ablation Studio Card -->
+        <div class="card ablation-card glass-panel">
+          <div class="card-header">
+            <div class="card-title-group">
+              <h2 class="card-title">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="#ff0055" fill="none" stroke-width="2">
+                  <path d="M18.36 6.64a9 9 0 1 1-12.73 0"/>
+                  <line x1="12" y1="2" x2="12" y2="12"/>
+                </svg>
+                In-Silico Neuronal Ablation Studio
+              </h2>
+              <span class="card-badge danger-badge">Virtual Knockout</span>
+            </div>
+            <span class="ablation-hint">Toggle neuron silencing to evaluate network resilience</span>
+          </div>
+
+          <div id="ablationStudioContent" class="ablation-content">
+            <!-- Populated via AblationStudio.js -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Agent Thought Stream & Scientific Report -->
+      <div class="column right-col">
+        <!-- Agent Stream Card -->
+        <div class="card agent-card glass-panel">
+          <div class="card-header">
+            <div class="card-title-group">
+              <h2 class="card-title">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="#00f0ff" fill="none" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                  <line x1="8" y1="21" x2="16" y2="21"/>
+                  <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+                Multi-Agent Reasoning Pipeline
+              </h2>
+              <span id="pipelineTimerBadge" class="card-badge info-badge">Ready</span>
+            </div>
+          </div>
+
+          <div id="agentStreamList" class="agent-stream-list">
+            <!-- Populated via AgentStream.js -->
+          </div>
+        </div>
+
+        <!-- Scientific Report Card -->
+        <div class="card report-card glass-panel">
+          <div class="card-header">
+            <div class="card-title-group">
+              <h2 class="card-title">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="#06d6a0" fill="none" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                  <line x1="16" y1="13" x2="8" y2="13"/>
+                  <line x1="16" y1="17" x2="8" y2="17"/>
+                  <polyline points="10 9 9 9 8 9"/>
+                </svg>
+                Scientific Discovery Report
+              </h2>
+            </div>
+            <div class="report-actions">
+              <button id="copyReportBtn" class="control-btn" title="Copy Markdown">
+                <span>Copy MD</span>
+              </button>
+              <button id="printReportBtn" class="control-btn" title="Print/Export PDF">
+                <span>Export PDF</span>
+              </button>
+            </div>
+          </div>
+
+          <div id="reportContainer" class="report-container">
+            <!-- Populated via ReportViewer.js -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>
+        <strong>NeuroGraph AI</strong> • Built on Google Research Drosophila Connectome (2026) & Janelia FlyWire • 
+        Graph-RAG Multi-Agent Discovery Platform
+      </p>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
