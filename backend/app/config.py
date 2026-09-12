@@ -25,8 +25,8 @@ try:
 
         # Platform Metadata
         PROJECT_NAME: str = "NeuroGraph AI"
-        VERSION: str = "0.2.0"
-        PHASE: str = "Phase 1 — Male CNS Connectome Integration"
+        VERSION: str = "0.3.0"
+        PHASE: str = "Phase 2 — Connectome Query Layer"
         ENVIRONMENT: str = "development"
         DEBUG: bool = True
         API_PREFIX: str = "/api"
@@ -62,8 +62,8 @@ except ImportError:
 
     class Settings(BaseModel):
         PROJECT_NAME: str = os.getenv("PROJECT_NAME", "NeuroGraph AI")
-        VERSION: str = os.getenv("VERSION", "0.2.0")
-        PHASE: str = os.getenv("PHASE", "Phase 1 — Male CNS Connectome Integration")
+        VERSION: str = os.getenv("VERSION", "0.3.0")
+        PHASE: str = os.getenv("PHASE", "Phase 2 — Connectome Query Layer")
         ENVIRONMENT: str = os.getenv("ENVIRONMENT", "development")
         DEBUG: bool = os.getenv("DEBUG", "True").lower() == "true"
         API_PREFIX: str = os.getenv("API_PREFIX", "/api")

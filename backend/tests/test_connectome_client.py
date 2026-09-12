@@ -8,6 +8,7 @@ from datetime import datetime, timezone
 from fastapi.testclient import TestClient
 
 from app.main import app
+from app.config import settings
 from app.connectome.client import NeuPrintClient
 from app.connectome.models import (
     NeuronModel,
@@ -153,5 +154,5 @@ def test_health_endpoint_subsystem_connectome():
     assert response.status_code == 200
     data = response.json()
     assert "connectome" in data["subsystems"]
-    assert data["phase"] == "Phase 1 — Male CNS Connectome Integration"
-    assert data["version"] == "0.2.0"
+    assert data["phase"] == settings.PHASE
+    assert data["version"] == settings.VERSION

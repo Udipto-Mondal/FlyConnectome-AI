@@ -17,12 +17,16 @@ from .graph.engine import graph_engine
 from .graph.connectome_data import SHOWCASE_PRESETS, NEURON_DATABASE
 from .agents.orchestrator import orchestrator
 from .connectome import neuprint_client
+from .api import api_v1_router
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
     description="Autonomous Multi-Agent Graph-RAG for Neural Circuit Discovery."
 )
+
+# Mount API v1 router
+app.include_router(api_v1_router, prefix="/api")
 
 # Enable CORS for frontend integration
 app.add_middleware(
@@ -129,15 +133,15 @@ def platform_info():
         "phase": settings.PHASE,
         "environment": settings.ENVIRONMENT,
         "source_of_truth": "Drosophila Male CNS Connectome (v1.0)",
-        "connectome_interface": "neuprint-python / Janelia neuPrint API (Active in Phase 1)",
+        "connectome_interface": "neuprint-python / Janelia neuPrint API (Query Layer Active in Phase 2)",
         "evidence_tiers": [
             "Tier A: Observed Connectome Evidence (Male CNS v1.0 via neuPrint)",
             "Tier B: Published Literature Evidence (Europe PMC / PubMed)",
             "Tier C: Computational Inference (Deterministic Graph Algorithms / In-Silico Ablation)"
         ],
         "roadmap": {
-            "current_phase": "Phase 1 — Real Male CNS Connectome Integration",
-            "next_phase": "Phase 2 — Connectome Query Layer"
+            "current_phase": "Phase 2 — Connectome Query Layer",
+            "next_phase": "Phase 3 — Graph Engine & Graph Algorithms"
         }
     }
 

@@ -58,5 +58,5 @@ def test_platform_info_endpoint():
     assert "Tier A" in data["evidence_tiers"][0]
     assert "Tier B" in data["evidence_tiers"][1]
     assert "Tier C" in data["evidence_tiers"][2]
-    assert data["roadmap"]["current_phase"] == "Phase 1 — Real Male CNS Connectome Integration"
-    assert data["roadmap"]["next_phase"] == "Phase 2 — Connectome Query Layer"
+    assert data["roadmap"]["current_phase"] == "Phase 2 — Connectome Query Layer"
+    assert data["roadmap"]["next_phase"] == "Phase 3 — Graph Engine & Graph Algorithms"

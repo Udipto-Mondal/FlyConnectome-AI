@@ -26,7 +26,10 @@ npm-debug.log*
 yarn-error.log*
 
 # Data cache (connectome downloads & cache)
-data/cache/
+data/cache/*
+!data/cache/connectome/
+data/cache/connectome/*
+!data/cache/connectome/canonical_male_cns_circuits.json
 data/downloads/
 *.feather
 *.parquet

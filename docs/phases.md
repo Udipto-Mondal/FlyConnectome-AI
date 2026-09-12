@@ -10,7 +10,7 @@ This document tracks the phased engineering progression of **NeuroGraph AI** in 
 | :---: | :--- | :---: | :--- |
 | **0** | **Project Architecture & Foundation** | **COMPLETE** | Repository foundation, config, health endpoints, documentation, testing setup |
 | **1** | **Real Male CNS Connectome Integration** | **COMPLETE** | neuPrint API client, official Male CNS v1.0 data schemas, authentication |
-| **2** | Connectome Query Layer | *Planned* | Type-safe neuron lookups, synaptic edge queries, ROI spatial filters |
+| **2** | **Connectome Query Layer** | **COMPLETE** | Type-safe neuron lookups, synaptic edge queries, ROI spatial filters |
 | **3** | Graph Engine & Graph Algorithms | *Planned* | Directed graph traversals, Dijkstra weighted distance, centrality metrics |
 | **4** | Graph-RAG Retrieval System | *Planned* | Subgraph extraction, relevance scoring, connectome context formatting |
 | **5** | Planner Agent & Orchestrator | *Planned* | Query decomposition, hypothesis generation, stateful LangGraph pipeline |
@@ -62,4 +62,32 @@ This document tracks the phased engineering progression of **NeuroGraph AI** in 
 - [x] Dedicated `/api/v1/connectome/status` endpoint functional.
 - [x] Subsystem health status updated in `/api/health`.
 - [x] Automated test suite passing (25/25 tests).
-- [ ] User review and approval obtained before Phase 2.
+- [x] User review and approval obtained before Phase 2.
+
+---
+
+## Phase 2: Connectome Query Layer
+
+### Objectives
+- Build `ConnectomeQueryLayer` on top of `NeuPrintClient` to abstract connectome Cypher queries into type-safe Python methods.
+- Provide single neuron lookups by Janelia body ID, returning validated `NeuronModel` with provenance.
+- Support neuron search across cell type, instance name, body ID, and innervated neuropil ROI.
+- Implement upstream (presynaptic) and downstream (postsynaptic) partner extraction with minimum synaptic contact thresholds (`min_synapses`).
+- Support querying direct synaptic connectivity between sets of candidate source and target neurons.
+- Build canonical circuit cache (`data/cache/connectome/canonical_male_cns_circuits.json`) from official Male CNS v1.0 data for reproducible offline tests.
+- Expose REST API routes under `/api/v1/connectome/`:
+  - `GET /api/v1/connectome/neurons`
+  - `GET /api/v1/connectome/neurons/{body_id}`
+  - `GET /api/v1/connectome/neurons/{body_id}/upstream`
+  - `GET /api/v1/connectome/neurons/{body_id}/downstream`
+  - `POST /api/v1/connectome/connectivity`
+- Establish comprehensive test coverage (37 automated tests passing).
+
+### Exit Criteria
+- [x] `ConnectomeQueryLayer` implemented and exported in `app.connectome`.
+- [x] Upstream and downstream partner queries operational with synaptic thresholds.
+- [x] Multi-neuron connectivity query operational.
+- [x] Canonical Male CNS circuit fixtures created for reproducible offline verification.
+- [x] REST API endpoints mounted under `/api/v1/connectome`.
+- [x] Automated test suite passing (37/37 tests).
+- [ ] User review and approval obtained before Phase 3.

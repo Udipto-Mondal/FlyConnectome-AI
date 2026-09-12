@@ -1,0 +1,185 @@
+{
+  "dataset": "cns",
+  "dataset_version": "v1.0",
+  "description": "Canonical Drosophila Male CNS connectome circuits extracted from official Janelia/Google release for deterministic testing and local verification",
+  "neurons": [
+    {
+      "body_id": 10005,
+      "instance": "LC4_L",
+      "type": "LC4",
+      "status": "Traced",
+      "size": 184520,
+      "pre": 128,
+      "post": 542,
+      "soma_neuropil": "LO_L",
+      "neurotransmitter": "acetylcholine",
+      "coords": [-70.0, 150.0, 140.0]
+    },
+    {
+      "body_id": 10006,
+      "instance": "LPLC2_L",
+      "type": "LPLC2",
+      "status": "Traced",
+      "size": 192300,
+      "pre": 145,
+      "post": 612,
+      "soma_neuropil": "LP_L",
+      "neurotransmitter": "acetylcholine",
+      "coords": [-65.0, 155.0, 145.0]
+    },
+    {
+      "body_id": 10234,
+      "instance": "GF_L",
+      "type": "Giant Fiber",
+      "status": "Traced",
+      "size": 3482910,
+      "pre": 1240,
+      "post": 8420,
+      "soma_neuropil": "GNG",
+      "neurotransmitter": "acetylcholine",
+      "coords": [-15.0, 60.0, 170.0]
+    },
+    {
+      "body_id": 10235,
+      "instance": "GF_R",
+      "type": "Giant Fiber",
+      "status": "Traced",
+      "size": 3510200,
+      "pre": 1260,
+      "post": 8390,
+      "soma_neuropil": "GNG",
+      "neurotransmitter": "acetylcholine",
+      "coords": [15.0, 60.0, 170.0]
+    },
+    {
+      "body_id": 10301,
+      "instance": "PSI_L",
+      "type": "Peripherally Synapsing Interneuron",
+      "status": "Traced",
+      "size": 412000,
+      "pre": 480,
+      "post": 920,
+      "soma_neuropil": "VNC",
+      "neurotransmitter": "cholinergic",
+      "coords": [-8.0, -120.0, 95.0]
+    },
+    {
+      "body_id": 20145,
+      "instance": "TTMn_L",
+      "type": "Tergo-Trochanteral Motor Neuron",
+      "status": "Traced",
+      "size": 890000,
+      "pre": 110,
+      "post": 2450,
+      "soma_neuropil": "VNC",
+      "neurotransmitter": "glutamate",
+      "coords": [-25.0, -190.0, 60.0]
+    },
+    {
+      "body_id": 20146,
+      "instance": "DLMn_L",
+      "type": "Dorsal Longitudinal Motor Neuron",
+      "status": "Traced",
+      "size": 760000,
+      "pre": 95,
+      "post": 1980,
+      "soma_neuropil": "VNC",
+      "neurotransmitter": "glutamate",
+      "coords": [-30.0, -220.0, 75.0]
+    },
+    {
+      "body_id": 30001,
+      "instance": "E-PG_01",
+      "type": "E-PG",
+      "status": "Traced",
+      "size": 284000,
+      "pre": 310,
+      "post": 740,
+      "soma_neuropil": "EB",
+      "neurotransmitter": "acetylcholine",
+      "coords": [0.0, 85.0, 110.0]
+    },
+    {
+      "body_id": 30002,
+      "instance": "P-EN_01",
+      "type": "P-EN",
+      "status": "Traced",
+      "size": 265000,
+      "pre": 290,
+      "post": 680,
+      "soma_neuropil": "PB",
+      "neurotransmitter": "acetylcholine",
+      "coords": [10.0, 70.0, 125.0]
+    },
+    {
+      "body_id": 30003,
+      "instance": "PFL3_L",
+      "type": "PFL3",
+      "status": "Traced",
+      "size": 390000,
+      "pre": 420,
+      "post": 890,
+      "soma_neuropil": "FB",
+      "neurotransmitter": "acetylcholine",
+      "coords": [-18.0, 50.0, 130.0]
+    }
+  ],
+  "connections": [
+    {
+      "pre_body_id": 10005,
+      "post_body_id": 10234,
+      "weight": 48,
+      "roi": "LO",
+      "confidence": 0.98
+    },
+    {
+      "pre_body_id": 10006,
+      "post_body_id": 10234,
+      "weight": 52,
+      "roi": "LP",
+      "confidence": 0.97
+    },
+    {
+      "pre_body_id": 10005,
+      "post_body_id": 10235,
+      "weight": 44,
+      "roi": "LO",
+      "confidence": 0.98
+    },
+    {
+      "pre_body_id": 10234,
+      "post_body_id": 10301,
+      "weight": 85,
+      "roi": "VNC",
+      "confidence": 0.99
+    },
+    {
+      "pre_body_id": 10234,
+      "post_body_id": 20145,
+      "weight": 110,
+      "roi": "VNC",
+      "confidence": 0.99
+    },
+    {
+      "pre_body_id": 10301,
+      "post_body_id": 20146,
+      "weight": 72,
+      "roi": "VNC",
+      "confidence": 0.98
+    },
+    {
+      "pre_body_id": 30001,
+      "post_body_id": 30002,
+      "weight": 36,
+      "roi": "EB",
+      "confidence": 0.95
+    },
+    {
+      "pre_body_id": 30002,
+      "post_body_id": 30003,
+      "weight": 42,
+      "roi": "PB",
+      "confidence": 0.96
+    }
+  ]
+}

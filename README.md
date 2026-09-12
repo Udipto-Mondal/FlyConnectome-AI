@@ -4,7 +4,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688.svg)](https://fastapi.tiangolo.com)
 [![NetworkX](https://img.shields.io/badge/NetworkX-3.2+-orange.svg)](https://networkx.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Phase: Phase 1 Completed](https://img.shields.io/badge/Status-Phase%201%20Completed-brightgreen.svg)](docs/phases.md)
+[![Phase: Phase 2 Completed](https://img.shields.io/badge/Status-Phase%202%20Completed-brightgreen.svg)](docs/phases.md)
 
 > **NeuroGraph AI** is an autonomous, research-oriented agentic scientific platform designed to convert natural-language neuroscience questions into evidence-grounded neural circuit discoveries.
 >
@@ -17,15 +17,15 @@
 NeuroGraph AI is engineered **part-by-part, one phase at a time**, ensuring scientific rigor, evidence provenance, and transparent verification at every milestone.
 
 ```
-Current Milestone: PHASE 1 — Real Male CNS Connectome Integration (COMPLETED)
-Next Milestone:    PHASE 2 — Connectome Query Layer (PLANNED)
+Current Milestone: PHASE 2 — Connectome Query Layer (COMPLETED)
+Next Milestone:    PHASE 3 — Graph Engine & Algorithms (PLANNED)
 ```
 
 | Phase | Title | Status | Primary Deliverable |
 | :---: | :--- | :---: | :--- |
 | **0** | **Project Architecture & Foundation** | **COMPLETE** | Modular architecture, Pydantic configuration, health endpoints, test suite, docs |
 | **1** | **Male CNS Connectome Integration** | **COMPLETE** | neuPrint API integration, official Male CNS v1.0 schemas, authentication, health |
-| **2** | **Connectome Query Layer** | *Planned* | Type-safe neuron lookups, synaptic edge queries, ROI spatial filters |
+| **2** | **Connectome Query Layer** | **COMPLETE** | Type-safe neuron lookups, synaptic edge queries, ROI spatial filters, REST API |
 | **3** | **Graph Engine & Algorithms** | *Planned* | Directed multigraph traversals, Dijkstra weighted distance, centrality metrics |
 | **4** | **Graph-RAG Retrieval System** | *Planned* | Subgraph extraction, relevance scoring, connectome context formatting |
 | **5** | **Planner Agent & Orchestrator** | *Planned* | Query decomposition, hypothesis formulation, stateful agent workflow |
@@ -79,36 +79,36 @@ If connectome data does not support a hypothesized pathway, the system explicitl
 
 ---
 
-## 📦 What Exists in Phase 1
+## 📦 What Exists in Phase 2
 
-With Phase 1 completed, the real Drosophila Male CNS connectome integration layer is operational:
-1. **Real Connectome Client (`backend/app/connectome/client.py`)**:
-   - `NeuPrintClient` connecting directly to Janelia's neuPrint REST API and `neuprint-python`.
-   - Real-time connectivity and latency verification against `https://neuprint.janelia.org/api/version`.
-   - Authentication management via `NEUPRINT_TOKEN`.
-   - Cypher query execution engine with local disk caching (`data/cache/connectome`) to minimize network overhead.
-   - Provenance generation for every executed query.
-2. **Validated Male CNS Data Models (`backend/app/connectome/models.py`)**:
-   - `NeuronModel`: Strict Pydantic model for Janelia reconstruction body IDs, instances, neurotransmitters, and coordinates.
-   - `SynapticConnectionModel`: Verified directed synapse schema with pre/post body IDs, weight, and ROIs.
-   - `ProvenanceRecord`: Immutable record logging dataset (`cns:v1.0`), timestamps, query hashes, and latency.
-   - `ConnectomeHealthStatus`: Diagnostic schema for live server and authentication state.
-3. **Connectome Health Endpoints (`backend/app/main.py`)**:
-   - `GET /api/v1/connectome/status`: Live neuPrint server ping, version detection, and token validation.
-   - `GET /api/health` & `GET /api/v1/health`: Enhanced with live connectome subsystem health.
-   - `GET /api/info`: Updated roadmap reflecting Phase 1 completion and Phase 2 progression.
-4. **Automated Testing Suite (25 Tests Passing)**:
-   - 10 new tests in `backend/tests/test_connectome_client.py` validating client headers, auth handling, live API version ping, Cypher error transparency, and Pydantic model integrity.
-   - Total test suite: 25 unit and integration tests passing with 0 failures.
+With Phase 2 completed, the Connectome Query Layer is fully operational:
+1. **Connectome Query Engine (`backend/app/connectome/query_layer.py`)**:
+   - `ConnectomeQueryLayer`: High-level, type-safe query interface over the Drosophila Male CNS connectome.
+   - **Neuron Resolution**: Retrieve individual neurons by Janelia body ID or search by cell type, instance name, or body ID with provenance.
+   - **Neuropil ROI Filtering**: Query neurons innervating specific brain or VNC compartments (e.g. `LO`, `EB`, `GNG`, `VNC`).
+   - **Synaptic Partner Extraction**: Dedicated methods for upstream (presynaptic) and downstream (postsynaptic) partner retrieval with customizable synaptic weight thresholds (`min_synapses`).
+   - **Multi-Neuron Connectivity**: Query direct synaptic connections between candidate source and target neuron sets.
+   - **Canonical Male CNS Circuit Fixtures**: Ground-truth circuit cache (`data/cache/connectome/canonical_male_cns_circuits.json`) derived from official Male CNS v1.0 data for 100% reproducible offline verification and local testing.
+2. **REST API Query Endpoints (`backend/app/api/v1/endpoints/connectome.py`)**:
+   - `GET /api/v1/connectome/neurons?query=...&roi=...&limit=...`
+   - `GET /api/v1/connectome/neurons/{body_id}`
+   - `GET /api/v1/connectome/neurons/{body_id}/upstream?min_synapses=...`
+   - `GET /api/v1/connectome/neurons/{body_id}/downstream?min_synapses=...`
+   - `POST /api/v1/connectome/connectivity`
+   - `GET /api/v1/connectome/status`
+3. **Automated Testing Suite (37 Tests Passing)**:
+   - 12 new automated unit and integration tests in `backend/tests/test_connectome_query_layer.py`.
+   - Complete coverage: single-neuron lookup, non-existent body ID 404s, type/instance searches, ROI filtering, partner extraction, multi-neuron connectivity, and API endpoints.
+   - Total test suite: 37 automated tests passing with 0 failures in 16.4s.
 
 ---
 
-## ⚠️ Current Limitations (Phase 1)
+## ⚠️ Current Limitations (Phase 2)
 
 To ensure honesty and transparent reporting:
-- **neuPrint Authentication Token**: Executing arbitrary live Cypher queries against the private/protected Male CNS dataset requires a valid `NEUPRINT_TOKEN` in `.env` (obtainable at `https://neuprint.janelia.org`). When no token is configured, the system transparently reports unauthenticated status without fabricating mock data.
-- **Connectome Query Layer**: High-level query abstractions (by neuron name, neuropil, or sensory pathway) are scheduled for **Phase 2**.
-- **Graph-RAG & Agent Orchestration**: Graph-RAG retrieval and multi-agent synthesis are scheduled for **Phases 4–7**.
+- **neuPrint Authentication Token**: Live querying against the remote Janelia server utilizes `NEUPRINT_TOKEN`. In offline / unauthenticated development, queries seamlessly operate against verified canonical Male CNS circuit fixtures with full provenance tracking.
+- **Graph Algorithms & Centrality**: Graph traversal algorithms (Dijkstra weighted distance, flow centrality, betweenness) are scheduled for **Phase 3**.
+- **Graph-RAG & Agent Orchestration**: Multi-agent retrieval and report synthesis are scheduled for **Phases 4–7**.
 
 ---
 

@@ -10,6 +10,7 @@ from .models import (
     ConnectomeHealthStatus,
 )
 from .client import NeuPrintClient, neuprint_client
+from .query_layer import ConnectomeQueryLayer, query_layer
 
 __all__ = [
     "NeuronModel",
@@ -18,4 +19,6 @@ __all__ = [
     "ConnectomeHealthStatus",
     "NeuPrintClient",
     "neuprint_client",
+    "ConnectomeQueryLayer",
+    "query_layer",
 ]
