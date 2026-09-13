@@ -1,5 +1,5 @@
 """
-Automated Integration Tests for NeuroGraph AI FastAPI Endpoints.
+Automated Integration Tests for FlyConnectome AI FastAPI Endpoints.
 """
 
 import pytest

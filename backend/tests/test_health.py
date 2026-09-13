@@ -1,5 +1,5 @@
 """
-Phase 0 Automated Tests for NeuroGraph AI Health & Foundation Endpoints.
+Phase 0 Automated Tests for FlyConnectome AI Health & Foundation Endpoints.
 """
 
 import pytest
@@ -15,7 +15,7 @@ def test_root_endpoint_metadata():
     response = client.get("/", headers={"accept": "application/json"})
     assert response.status_code == 200
     data = response.json()
-    assert data["platform"] == "NeuroGraph AI"
+    assert data["platform"] == "FlyConnectome AI"
     assert data["phase"] == settings.PHASE
     assert data["status"] == "operational"
     assert "endpoints" in data
@@ -52,7 +52,7 @@ def test_platform_info_endpoint():
     response = client.get("/api/info")
     assert response.status_code == 200
     data = response.json()
-    assert data["platform"] == "NeuroGraph AI"
+    assert data["platform"] == "FlyConnectome AI"
     assert "Drosophila Male CNS" in data["source_of_truth"]
     assert len(data["evidence_tiers"]) == 3
     assert "Tier A" in data["evidence_tiers"][0]

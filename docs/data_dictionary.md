@@ -1,8 +1,8 @@
-# NeuroGraph AI — Scientific Data Dictionary (Male CNS Connectome)
+# FlyConnectome AI — Scientific Data Dictionary (Male CNS Connectome)
 
 ## 1. Overview & Source of Truth
 
-The canonical source of truth for neural connectivity in NeuroGraph AI is the **Drosophila melanogaster Male Central Nervous System (Male CNS v1.0)** connectome, released by Janelia Research Campus and Google Research.
+The canonical source of truth for neural connectivity in FlyConnectome AI is the **Drosophila melanogaster Male Central Nervous System (Male CNS v1.0)** connectome, released by Janelia Research Campus and Google Research.
 
 The dataset contains the complete central brain and ventral nerve cord (VNC), representing over 160,000 reconstructed neurons and over 120 million synaptic connections.
 
@@ -17,7 +17,7 @@ Access methods:
 
 ### 2.1 Neuron Node Schema
 
-Every neuron node within the NeuroGraph AI graph representation must align with the fields provided by the official dataset:
+Every neuron node within the FlyConnectome AI graph representation must align with the fields provided by the official dataset:
 
 | Field | Type | Required | Description | Example |
 | :--- | :--- | :---: | :--- | :--- |

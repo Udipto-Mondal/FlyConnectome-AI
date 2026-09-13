@@ -1,5 +1,5 @@
 """
-Automated Unit Tests for NeuroGraph AI Graph Engine.
+Automated Unit Tests for FlyConnectome AI Graph Engine.
 """
 
 import pytest

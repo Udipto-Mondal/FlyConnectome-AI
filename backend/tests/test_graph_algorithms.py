@@ -1,5 +1,5 @@
 """
-Automated Test Suite for NeuroGraph AI Graph Engine & Graph Algorithms (Phase 3).
+Automated Test Suite for FlyConnectome AI Graph Engine & Graph Algorithms (Phase 3).
 Validates:
 - Dijkstra biological distance pathfinding
 - Directed simple path traversals

@@ -5,7 +5,7 @@ NOTICE & SCIENTIFIC DISCLAIMER:
 This dataset is a static, synthetic circuit fixture strictly designed for local development,
 schema validation, and unit testing during Phase 0 foundation engineering.
 
-In accordance with NeuroGraph AI scientific standards:
+In accordance with FlyConnectome AI scientific standards:
 - This data must NEVER be cited as biological evidence or claimed to be the complete connectome.
 - The official Drosophila Male Central Nervous System connectome (Male CNS v1.0, 160,000+ neurons,
   120,000,000+ synapses) will be integrated directly via the neuPrint API in Phase 1 and Phase 2.

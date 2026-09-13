@@ -1,5 +1,5 @@
 """
-Main FastAPI application for NeuroGraph AI.
+Main FastAPI application for FlyConnectome AI.
 High-throughput REST and discovery endpoints connecting frontend to Graph-RAG and multi-agent engine.
 """
 
@@ -174,6 +174,7 @@ def discover_circuit(req: DiscoveryRequest, response: Response):
     """
     if not req.query.strip():
         raise HTTPException(status_code=400, detail="Query cannot be empty.")
+    response.headers["X-FlyConnectome-Data-Tier"] = "Phase-0-Synthetic-Fixture"
     response.headers["X-NeuroGraph-Data-Tier"] = "Phase-0-Synthetic-Fixture"
     try:
         result = orchestrator.run_discovery_pipeline(req.query)
@@ -190,6 +191,7 @@ def run_ablation(req: AblationRequest, response: Response):
     """
     if not req.silenced_ids:
         raise HTTPException(status_code=400, detail="Must specify at least one neuron ID to silence.")
+    response.headers["X-FlyConnectome-Data-Tier"] = "Phase-0-Synthetic-Fixture"
     response.headers["X-NeuroGraph-Data-Tier"] = "Phase-0-Synthetic-Fixture"
     try:
         result = graph_engine.simulate_ablation(

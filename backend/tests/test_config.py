@@ -1,5 +1,5 @@
 """
-Phase 0 Automated Tests for NeuroGraph AI Configuration Layer.
+Phase 0 Automated Tests for FlyConnectome AI Configuration Layer.
 """
 
 import os
@@ -10,7 +10,7 @@ from app.config import Settings
 def test_settings_defaults():
     """Verify default configuration attributes are properly loaded."""
     s = Settings()
-    assert s.PROJECT_NAME == "NeuroGraph AI"
+    assert s.PROJECT_NAME == "FlyConnectome AI"
     assert "Phase 3" in s.PHASE
     assert s.PORT == 8000
     assert s.DEBUG is True

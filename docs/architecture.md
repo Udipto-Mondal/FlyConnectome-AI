@@ -1,8 +1,8 @@
-# NeuroGraph AI — System Architecture Document
+# FlyConnectome AI — System Architecture Document
 
 ## 1. Executive Summary & Vision
 
-**NeuroGraph AI** is an autonomous, research-oriented agentic scientific platform designed to convert natural-language neuroscience queries into evidence-grounded neural circuit discoveries.
+**FlyConnectome AI** is an autonomous, research-oriented agentic scientific platform designed to convert natural-language neuroscience queries into evidence-grounded neural circuit discoveries.
 
 The platform grounds multi-agent reasoning in the **Drosophila Male Central Nervous System (Male CNS v1.0)** connectome dataset, utilizing Graph-RAG (Graph Retrieval-Augmented Generation), mathematical graph traversal algorithms, peer-reviewed literature validation via Europe PMC, and in-silico circuit ablation.
 
@@ -55,7 +55,7 @@ The platform grounds multi-agent reasoning in the **Drosophila Male Central Nerv
 
 ## 3. Tripartite Evidence Separation Model
 
-To prevent hallucination and maintain peer-review standards, all findings synthesized by NeuroGraph AI are partitioned into three immutable tiers:
+To prevent hallucination and maintain peer-review standards, all findings synthesized by FlyConnectome AI are partitioned into three immutable tiers:
 
 | Evidence Tier | Data Types | Source of Truth | Verification Standard |
 | :--- | :--- | :--- | :--- |

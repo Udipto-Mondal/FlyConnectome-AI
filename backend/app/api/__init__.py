@@ -1,5 +1,5 @@
 """
-API package for NeuroGraph AI.
+API package for FlyConnectome AI.
 """
 
 from .v1 import api_v1_router

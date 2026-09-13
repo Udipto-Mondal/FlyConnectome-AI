@@ -1,5 +1,5 @@
 """
-Literature Validation Agent for NeuroGraph AI.
+Literature Validation Agent for FlyConnectome AI.
 Queries Europe PMC / PubMed for peer-reviewed scientific papers validating discovered neural circuits,
 extracts academic citations, and prevents biological hallucination.
 """

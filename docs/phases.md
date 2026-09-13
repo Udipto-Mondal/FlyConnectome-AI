@@ -1,6 +1,6 @@
-# NeuroGraph AI — Development Roadmap & Phase Status
+# FlyConnectome AI — Development Roadmap & Phase Status
 
-This document tracks the phased engineering progression of **NeuroGraph AI** in strict accordance with the Master Development Plan.
+This document tracks the phased engineering progression of **FlyConnectome AI** in strict accordance with the Master Development Plan.
 
 ---
 

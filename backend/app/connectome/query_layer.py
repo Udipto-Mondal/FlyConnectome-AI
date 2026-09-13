@@ -1,5 +1,5 @@
 """
-Connectome Query Layer for NeuroGraph AI.
+Connectome Query Layer for FlyConnectome AI.
 Provides high-level, type-safe query interfaces over the Drosophila Male CNS (v1.0) connectome.
 Handles neuron resolution, upstream/downstream partner extraction, synaptic connectivity lookups,
 and ROI spatial filtering with strict provenance tracking and cached canonical fixtures.

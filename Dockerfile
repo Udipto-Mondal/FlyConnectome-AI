@@ -1,4 +1,4 @@
-# Multi-stage Dockerfile for NeuroGraph AI
+# Multi-stage Dockerfile for FlyConnectome AI
 # Stage 1: Build Frontend
 FROM node:20-alpine AS frontend-builder
 WORKDIR /app/frontend

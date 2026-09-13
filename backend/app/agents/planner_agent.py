@@ -1,5 +1,5 @@
 """
-Planner Agent for NeuroGraph AI.
+Planner Agent for FlyConnectome AI.
 Parses natural language research queries into structured biological circuit specifications,
 identifies candidate sensory/motor neuropils, and plans graph traversal constraints.
 """

@@ -1,5 +1,5 @@
 """
-Connectome Graph Engine for NeuroGraph AI (Phase 3).
+Connectome Graph Engine for FlyConnectome AI (Phase 3).
 NetworkX-powered directed graph traversal engine providing:
 - Inverted biological resistance weight formulation for Dijkstra pathfinding
 - Directed K-hop traversals and multi-path ranking

@@ -1,5 +1,5 @@
 """
-Pydantic Data Models and Schemas for NeuroGraph AI Graph Engine (Phase 3).
+Pydantic Data Models and Schemas for FlyConnectome AI Graph Engine (Phase 3).
 Provides type-safe models for directed pathfinding, biological distance metrics,
 centrality hubs, topological invariants, in-silico ablation, and computational provenance.
 """

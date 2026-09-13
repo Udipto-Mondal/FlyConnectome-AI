@@ -1,5 +1,5 @@
 """
-API v1 package for NeuroGraph AI.
+API v1 package for FlyConnectome AI.
 Mounts connectome query layer and Phase 3 graph engine routers.
 """
 

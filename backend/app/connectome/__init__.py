@@ -1,5 +1,5 @@
 """
-Connectome package for NeuroGraph AI.
+Connectome package for FlyConnectome AI.
 Integrates official Drosophila Male CNS (v1.0) connectome via neuPrint API.
 """
 

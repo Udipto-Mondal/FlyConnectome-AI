@@ -1,5 +1,5 @@
 """
-neuPrint API Client for NeuroGraph AI.
+neuPrint API Client for FlyConnectome AI.
 Integrates directly with the official Drosophila Male Central Nervous System
 connectome dataset (Male CNS v1.0) hosted at Janelia Research Campus.
 
@@ -64,7 +64,7 @@ class NeuPrintClient:
         headers = {
             "Content-Type": "application/json",
             "Accept": "application/json",
-            "User-Agent": f"NeuroGraphAI/{settings.VERSION} (Research Connectomics)",
+            "User-Agent": f"FlyConnectomeAI/{settings.VERSION} (Research Connectomics)",
         }
         if self.is_authenticated:
             headers["Authorization"] = f"Bearer {self.token.strip()}"

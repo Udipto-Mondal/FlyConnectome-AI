@@ -1,5 +1,5 @@
 """
-Multi-Agent Orchestrator for NeuroGraph AI.
+Multi-Agent Orchestrator for FlyConnectome AI.
 Coordinates the Planner, Graph-RAG, Literature, and Synthesis agents into an autonomous discovery workflow.
 """
 
@@ -13,7 +13,7 @@ from .synthesis_agent import synthesis_agent
 
 class AgentOrchestrator:
     def __init__(self):
-        self.name = "NeuroGraph Multi-Agent Orchestrator"
+        self.name = "FlyConnectome Multi-Agent Orchestrator"
 
     def run_discovery_pipeline(self, user_query: str) -> Dict[str, Any]:
         """

@@ -1,1 +1,1 @@
-"""Agents Package for NeuroGraph AI."""
+"""Agents Package for FlyConnectome AI."""

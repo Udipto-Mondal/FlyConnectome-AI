@@ -1,5 +1,5 @@
 """
-REST API endpoints for the NeuroGraph AI Graph Engine (Phase 3).
+REST API endpoints for the FlyConnectome AI Graph Engine (Phase 3).
 Provides high-performance endpoints for:
 - Dijkstra weighted shortest paths and multi-hop circuit traversals
 - Network centrality analysis (Betweenness bottleneck hubs, Closeness, PageRank)

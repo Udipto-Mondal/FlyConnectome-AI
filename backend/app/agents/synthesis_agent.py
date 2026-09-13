@@ -1,5 +1,5 @@
 """
-Synthesis & Scientific Discovery Report Agent for NeuroGraph AI.
+Synthesis & Scientific Discovery Report Agent for FlyConnectome AI.
 Compiles graph evidence, topological metrics, in-silico ablation results,
 and literature citations into publication-grade scientific reports.
 """

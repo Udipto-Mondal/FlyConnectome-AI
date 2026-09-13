@@ -1,5 +1,5 @@
 """
-Configuration settings for NeuroGraph AI.
+Configuration settings for FlyConnectome AI.
 Loads environment variables with structured Pydantic typing and validation.
 Supports Phase 0 foundations, Male CNS connectome credentials for Phase 1,
 and multi-agent/literature endpoints.
@@ -24,7 +24,7 @@ try:
         )
 
         # Platform Metadata
-        PROJECT_NAME: str = "NeuroGraph AI"
+        PROJECT_NAME: str = "FlyConnectome AI"
         VERSION: str = "0.3.0"
         PHASE: str = "Phase 3 — Graph Engine & Graph Algorithms"
         ENVIRONMENT: str = "development"
@@ -55,13 +55,13 @@ try:
 
         # Literature Retrieval (Phase 6)
         EUROPE_PMC_BASE_URL: str = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
-        PUBMED_EMAIL: str = "researcher@neurograph.ai"
+        PUBMED_EMAIL: str = "researcher@flyconnectome.ai"
 
 except ImportError:
     from pydantic import BaseModel, Field
 
     class Settings(BaseModel):
-        PROJECT_NAME: str = os.getenv("PROJECT_NAME", "NeuroGraph AI")
+        PROJECT_NAME: str = os.getenv("PROJECT_NAME", "FlyConnectome AI")
         VERSION: str = os.getenv("VERSION", "0.3.0")
         PHASE: str = os.getenv("PHASE", "Phase 3 — Graph Engine & Graph Algorithms")
         ENVIRONMENT: str = os.getenv("ENVIRONMENT", "development")
@@ -91,7 +91,7 @@ except ImportError:
             "EUROPE_PMC_BASE_URL",
             "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
         )
-        PUBMED_EMAIL: str = os.getenv("PUBMED_EMAIL", "researcher@neurograph.ai")
+        PUBMED_EMAIL: str = os.getenv("PUBMED_EMAIL", "researcher@flyconnectome.ai")
 
 
 settings = Settings()

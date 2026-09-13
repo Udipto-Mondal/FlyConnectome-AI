@@ -1,5 +1,5 @@
 """
-Graph Package for NeuroGraph AI (Phase 3).
+Graph Package for FlyConnectome AI (Phase 3).
 Exports ConnectomeGraphEngine, singleton graph_engine, and mathematical graph models.
 """
 

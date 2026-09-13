@@ -40,7 +40,7 @@ class SynapticConnectionModel(BaseModel):
 class ProvenanceRecord(BaseModel):
     """
     Immutable provenance record tracking query origin, timestamp, and dataset version.
-    Mandatory for all scientific discoveries in NeuroGraph AI.
+    Mandatory for all scientific discoveries in FlyConnectome AI.
     """
     provenance_id: str = Field(..., description="Unique query execution identifier")
     dataset_name: str = Field("cns", description="Canonical dataset name")

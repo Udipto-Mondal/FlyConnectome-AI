@@ -1,5 +1,5 @@
 """
-Graph-RAG Agent for NeuroGraph AI.
+Graph-RAG Agent for FlyConnectome AI.
 Executes mathematically verified graph traversals on the connectome multigraph,
 extracts 3D subgraphs, calculates synaptic flow metrics, and runs in-silico ablation.
 """
