@@ -1,4 +1,4 @@
-# 🧠 NeuroGraph AI: Autonomous Connectome Graph-RAG & Discovery Engine
+#  NeuroGraph AI: Autonomous Connectome Graph-RAG & Discovery Engine
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688.svg)](https://fastapi.tiangolo.com)
@@ -12,7 +12,7 @@
 
 ---
 
-## 🌟 The Core Innovation (Idea 1 + Idea 2 + Idea 8)
+##  The Core Innovation (Idea 1 + Idea 2 + Idea 8)
 
 NeuroGraph AI bridges the gap between massive connectomics data and autonomous AI discovery by synthesizing three core methodologies:
 
@@ -36,7 +36,7 @@ NeuroGraph AI bridges the gap between massive connectomics data and autonomous A
 
 ---
 
-## 🏛️ System Architecture
+##  System Architecture
 
 ```
                                   [ User Query ]
@@ -77,7 +77,7 @@ NeuroGraph AI bridges the gap between massive connectomics data and autonomous A
 
 ---
 
-## 🔬 Featured Connectome Circuits
+##  Featured Connectome Circuits
 
 NeuroGraph AI comes pre-indexed with canonical Drosophila nervous system circuits:
 1. **Visual Looming Escape Reflex:** Photoreceptors ($R1-R6$) $\rightarrow$ Lamina ($L1/L2$) $\rightarrow$ Medulla ($Tm3$) $\rightarrow$ Lobula Columnar Looming Detectors ($LC4/LPLC2$) $\rightarrow$ **Giant Fiber ($GF$)** $\rightarrow$ PSI Interneuron $\rightarrow$ Jump & Flight Motor Neurons ($TTMn/DLMn$).
@@ -87,7 +87,7 @@ NeuroGraph AI comes pre-indexed with canonical Drosophila nervous system circuit
 
 ---
 
-## ⚡ Quick Start & Installation
+##  Quick Start & Installation
 
 ### Option 1: One-Click Launch (Windows PowerShell)
 
@@ -143,7 +143,7 @@ Access the dashboard at `http://localhost:8000`.
 
 ---
 
-## 📡 REST API Documentation
+##  REST API Documentation
 
 | Endpoint | Method | Description |
 | :--- | :---: | :--- |
@@ -195,7 +195,7 @@ Access the dashboard at `http://localhost:8000`.
 
 ---
 
-## 💼 Resume Bullet Points (Showcase for Recruiters)
+##  Resume Bullet Points (Showcase for Recruiters)
 
 ```markdown
 • NeuroGraph AI — Autonomous Connectome Graph-RAG & Circuit Discovery Platform
