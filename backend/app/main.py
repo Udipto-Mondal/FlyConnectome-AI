@@ -140,8 +140,8 @@ def platform_info():
             "Tier C: Computational Inference (Deterministic Graph Algorithms / In-Silico Ablation)"
         ],
         "roadmap": {
-            "current_phase": "Phase 2 — Connectome Query Layer",
-            "next_phase": "Phase 3 — Graph Engine & Graph Algorithms"
+            "current_phase": "Phase 3 — Graph Engine & Graph Algorithms",
+            "next_phase": "Phase 4 — Graph-RAG Retrieval System"
         }
     }
 

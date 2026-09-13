@@ -11,7 +11,7 @@ This document tracks the phased engineering progression of **NeuroGraph AI** in 
 | **0** | **Project Architecture & Foundation** | **COMPLETE** | Repository foundation, config, health endpoints, documentation, testing setup |
 | **1** | **Real Male CNS Connectome Integration** | **COMPLETE** | neuPrint API client, official Male CNS v1.0 data schemas, authentication |
 | **2** | **Connectome Query Layer** | **COMPLETE** | Type-safe neuron lookups, synaptic edge queries, ROI spatial filters |
-| **3** | Graph Engine & Graph Algorithms | *Planned* | Directed graph traversals, Dijkstra weighted distance, centrality metrics |
+| **3** | **Graph Engine & Graph Algorithms** | **COMPLETE** | Directed graph traversals, Dijkstra weighted distance, centrality metrics |
 | **4** | Graph-RAG Retrieval System | *Planned* | Subgraph extraction, relevance scoring, connectome context formatting |
 | **5** | Planner Agent & Orchestrator | *Planned* | Query decomposition, hypothesis generation, stateful LangGraph pipeline |
 | **6** | Literature Agent | *Planned* | Europe PMC & PubMed API integration, citation verification, paper retrieval |
@@ -90,4 +90,45 @@ This document tracks the phased engineering progression of **NeuroGraph AI** in 
 - [x] Canonical Male CNS circuit fixtures created for reproducible offline verification.
 - [x] REST API endpoints mounted under `/api/v1/connectome`.
 - [x] Automated test suite passing (37/37 tests).
-- [ ] User review and approval obtained before Phase 3.
+- [x] User review and approval obtained before Phase 3.
+
+---
+
+## Phase 3: Graph Engine & Graph Algorithms
+
+### Objectives
+- Build high-performance NetworkX directed graph engine (`ConnectomeGraphEngine`) with biological distance formulations.
+- Implement biological distance metric where edge weight represents inverted synaptic resistance ($d(u,v) = \frac{1000}{\max(1, w_{synapses})}$), ensuring high-synapse channels are prioritized in Dijkstra shortest paths.
+- Provide multi-source to multi-target directed traversals with both Dijkstra and all simple paths options.
+- Implement network centrality analysis: Betweenness Centrality ($C_B(v)$) for bottleneck identification, Closeness Centrality ($C_C(v)$), directed PageRank flow, and synaptic degree metrics.
+- Implement mathematically rigorous in-silico circuit ablation adhering strictly to `docs/architecture.md` Section 5:
+  - Perturbed graph $G' = (V \setminus S, E')$
+  - Reachable Target Loss ($L_{target}$)
+  - Path Severance Percentage ($P_{sev}$)
+  - Throughput Loss ($T_{loss}$)
+  - Composite Vulnerability Score ($V \in [0.0, 10.0]$)
+  - Surviving polysynaptic detours identification
+- Package induced subgraphs with 3D centroid coordinates (`coords`), degrees, and edge synapses for WebGL/Three.js rendering.
+- Calculate global graph topological invariants (density, reciprocity, strongly/weakly connected components, DAG evaluation).
+- Expose REST API endpoints under `/api/v1/graph/`:
+  - `POST /api/v1/graph/paths`
+  - `POST /api/v1/graph/centrality`
+  - `POST /api/v1/graph/subgraph`
+  - `POST /api/v1/graph/ablation`
+  - `GET /api/v1/graph/topology`
+  - `GET /api/v1/graph/statistics`
+- Enforce Tier C Computational Inference provenance tracking (`ComputationalProvenanceRecord`).
+- Maintain 100% backward compatibility with Phase 0/1/2 endpoints and tests.
+
+### Exit Criteria
+- [x] `ConnectomeGraphEngine` updated and exported in `app.graph`.
+- [x] Type-safe Pydantic models implemented in `backend/app/graph/models.py`.
+- [x] Dijkstra biological inverted distance pathfinding implemented and tested.
+- [x] Betweenness, Closeness, PageRank, and Degree centrality computed with bottleneck detection.
+- [x] In-silico ablation engine implementing Section 5 equations ($P_{sev}$, $T_{loss}$, $L_{target}$, $V$).
+- [x] Subgraph extraction packaging 3D spatial coordinates ready for WebGL rendering.
+- [x] Topological invariants (density, reciprocity, components) operational.
+- [x] REST API endpoints mounted under `/api/v1/graph`.
+- [x] Automated test suite passing (49/49 tests).
+- [ ] User review and approval obtained before Phase 4.
+
