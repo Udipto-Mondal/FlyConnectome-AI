@@ -12,7 +12,7 @@ This document tracks the phased engineering progression of **FlyConnectome AI** 
 | **1** | **Real Male CNS Connectome Integration** | **COMPLETE** | neuPrint API client, official Male CNS v1.0 data schemas, authentication |
 | **2** | **Connectome Query Layer** | **COMPLETE** | Type-safe neuron lookups, synaptic edge queries, ROI spatial filters |
 | **3** | **Graph Engine & Graph Algorithms** | **COMPLETE** | Directed graph traversals, Dijkstra weighted distance, centrality metrics |
-| **4** | Graph-RAG Retrieval System | *Planned* | Subgraph extraction, relevance scoring, connectome context formatting |
+| **4** | **Graph-RAG Retrieval System** | **COMPLETE** | Subgraph extraction, relevance scoring, connectome context formatting |
 | **5** | Planner Agent & Orchestrator | *Planned* | Query decomposition, hypothesis generation, stateful LangGraph pipeline |
 | **6** | Literature Agent | *Planned* | Europe PMC & PubMed API integration, citation verification, paper retrieval |
 | **7** | Scientific Synthesis Agent | *Planned* | Tripartite evidence aggregation (Connectome, Literature, Inference) |
@@ -130,5 +130,39 @@ This document tracks the phased engineering progression of **FlyConnectome AI** 
 - [x] Topological invariants (density, reciprocity, components) operational.
 - [x] REST API endpoints mounted under `/api/v1/graph`.
 - [x] Automated test suite passing (49/49 tests).
-- [ ] User review and approval obtained before Phase 4.
+- [x] User review and approval obtained before Phase 4.
+
+---
+
+## Phase 4: Graph-RAG Retrieval System
+
+### Objectives
+- Build specialized Graph-RAG package (`backend/app/graph_rag/`) bridging connectome multigraph structures with LLM reasoning agents.
+- Implement biological entity grounding resolving natural language queries, cell types, instances, and neuropils into canonical Janelia body IDs.
+- Implement multi-factor circuit relevance scorer (`CircuitRelevanceScorer`) evaluating:
+  - Synaptic Contact Capacity ($S_{synapse}$)
+  - Biological Resistance Efficiency ($S_{efficiency}$)
+  - Intermediate Hub Centrality ($S_{centrality}$)
+  - Query & Neuropil Alignment ($S_{query}$)
+  - Weighted composite score $R \in [0.0, 1.0]$ with explainable scientific rationale.
+- Implement `ConnectomeContextFormatter` compiling prompt-ready markdown with strict Tier A factual guardrails and token budget enforcement.
+- Build high-level `GraphRAGRetriever` orchestrating grounding -> traversal -> scoring -> context formatting.
+- Expose REST API routes under `/api/v1/graph-rag/`:
+  - `POST /api/v1/graph-rag/retrieve`
+  - `POST /api/v1/graph-rag/score-path`
+  - `POST /api/v1/graph-rag/format-context`
+  - `GET /api/v1/graph-rag/status`
+- Upgrade `GraphRAGAgent` to utilize `GraphRAGRetriever` and furnish LLM prompt contexts to the multi-agent orchestrator.
+- Maintain 100% backward compatibility with all prior phases and pass full test suite (62/62 tests passing).
+
+### Exit Criteria
+- [x] Pydantic models implemented in `backend/app/graph_rag/models.py`.
+- [x] Multi-factor relevance scoring engine (`scorer.py`) bounded in $[0.0, 1.0]$.
+- [x] Anti-hallucination context formatter (`formatter.py`) with token budget control.
+- [x] End-to-end retriever (`retriever.py`) operational with Tier C computational provenance.
+- [x] REST API endpoints mounted under `/api/v1/graph-rag`.
+- [x] `GraphRAGAgent` upgraded and integrated with `AgentOrchestrator`.
+- [x] Automated test suite passing 100% (62/62 tests passing).
+- [ ] User review and approval obtained before Phase 5.
+
 

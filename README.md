@@ -4,7 +4,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688.svg)](https://fastapi.tiangolo.com)
 [![NetworkX](https://img.shields.io/badge/NetworkX-3.2+-orange.svg)](https://networkx.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Phase: Phase 3 Completed](https://img.shields.io/badge/Status-Phase%203%20Completed-brightgreen.svg)](docs/phases.md)
+[![Phase: Phase 4 Completed](https://img.shields.io/badge/Status-Phase%204%20Completed-brightgreen.svg)](docs/phases.md)
 
 > **FlyConnectome AI** is an autonomous, research-oriented agentic scientific platform designed to convert natural-language neuroscience questions into evidence-grounded neural circuit discoveries.
 >
@@ -17,8 +17,8 @@
 FlyConnectome AI is engineered **part-by-part, one phase at a time**, ensuring scientific rigor, evidence provenance, and transparent verification at every milestone.
 
 ```
-Current Milestone: PHASE 3 — Graph Engine & Algorithms (COMPLETED)
-Next Milestone:    PHASE 4 — Graph-RAG Retrieval System (PLANNED)
+Current Milestone: PHASE 4 — Graph-RAG Retrieval System (COMPLETED)
+Next Milestone:    PHASE 5 — Planner Agent & Orchestrator (PLANNED)
 ```
 
 | Phase | Title | Status | Primary Deliverable |
@@ -27,7 +27,7 @@ Next Milestone:    PHASE 4 — Graph-RAG Retrieval System (PLANNED)
 | **1** | **Male CNS Connectome Integration** | **COMPLETE** | neuPrint API integration, official Male CNS v1.0 schemas, authentication, health |
 | **2** | **Connectome Query Layer** | **COMPLETE** | Type-safe neuron lookups, synaptic edge queries, ROI spatial filters, REST API |
 | **3** | **Graph Engine & Algorithms** | **COMPLETE** | Directed multigraph traversals, Dijkstra weighted distance, centrality metrics |
-| **4** | **Graph-RAG Retrieval System** | *Planned* | Subgraph extraction, relevance scoring, connectome context formatting |
+| **4** | **Graph-RAG Retrieval System** | **COMPLETE** | Subgraph extraction, relevance scoring, connectome context formatting |
 | **5** | **Planner Agent & Orchestrator** | *Planned* | Query decomposition, hypothesis formulation, stateful agent workflow |
 | **6** | **Literature Agent** | *Planned* | Europe PMC & PubMed integration, peer-reviewed citation verification |
 | **7** | **Scientific Synthesis Agent** | *Planned* | Tripartite evidence aggregation (Connectome, Literature, Inference) |

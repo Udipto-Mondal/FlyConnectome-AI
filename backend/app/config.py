@@ -25,8 +25,8 @@ try:
 
         # Platform Metadata
         PROJECT_NAME: str = "FlyConnectome AI"
-        VERSION: str = "0.3.0"
-        PHASE: str = "Phase 3 — Graph Engine & Graph Algorithms"
+        VERSION: str = "0.4.0"
+        PHASE: str = "Phase 4 — Graph-RAG Retrieval System"
         ENVIRONMENT: str = "development"
         DEBUG: bool = True
         API_PREFIX: str = "/api"
@@ -47,6 +47,11 @@ try:
         NEUPRINT_TOKEN: str = ""
         CONNECTOME_CACHE_DIR: str = "./data/cache/connectome"
 
+        # Graph-RAG Retrieval Configuration (Phase 4)
+        GRAPH_RAG_MAX_DEPTH: int = 5
+        GRAPH_RAG_MIN_SYNAPSES: int = 5
+        GRAPH_RAG_DEFAULT_TOKEN_BUDGET: int = 2500
+
         # Agent & LLM Configuration (Phase 5+)
         GEMINI_API_KEY: str = ""
         GEMINI_MODEL: str = "gemini-1.5-pro"
@@ -62,8 +67,8 @@ except ImportError:
 
     class Settings(BaseModel):
         PROJECT_NAME: str = os.getenv("PROJECT_NAME", "FlyConnectome AI")
-        VERSION: str = os.getenv("VERSION", "0.3.0")
-        PHASE: str = os.getenv("PHASE", "Phase 3 — Graph Engine & Graph Algorithms")
+        VERSION: str = os.getenv("VERSION", "0.4.0")
+        PHASE: str = os.getenv("PHASE", "Phase 4 — Graph-RAG Retrieval System")
         ENVIRONMENT: str = os.getenv("ENVIRONMENT", "development")
         DEBUG: bool = os.getenv("DEBUG", "True").lower() == "true"
         API_PREFIX: str = os.getenv("API_PREFIX", "/api")
@@ -81,6 +86,10 @@ except ImportError:
         NEUPRINT_DATASET: str = os.getenv("NEUPRINT_DATASET", "cns")
         NEUPRINT_TOKEN: str = os.getenv("NEUPRINT_TOKEN", "")
         CONNECTOME_CACHE_DIR: str = os.getenv("CONNECTOME_CACHE_DIR", "./data/cache/connectome")
+
+        GRAPH_RAG_MAX_DEPTH: int = int(os.getenv("GRAPH_RAG_MAX_DEPTH", "5"))
+        GRAPH_RAG_MIN_SYNAPSES: int = int(os.getenv("GRAPH_RAG_MIN_SYNAPSES", "5"))
+        GRAPH_RAG_DEFAULT_TOKEN_BUDGET: int = int(os.getenv("GRAPH_RAG_DEFAULT_TOKEN_BUDGET", "2500"))
 
         GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
         GEMINI_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-1.5-pro")

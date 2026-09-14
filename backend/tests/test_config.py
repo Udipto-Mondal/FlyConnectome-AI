@@ -11,12 +11,15 @@ def test_settings_defaults():
     """Verify default configuration attributes are properly loaded."""
     s = Settings()
     assert s.PROJECT_NAME == "FlyConnectome AI"
-    assert "Phase 3" in s.PHASE
+    assert "Phase 4" in s.PHASE
     assert s.PORT == 8000
     assert s.DEBUG is True
     assert "cns" in s.NEUPRINT_DATASET.lower()
     assert "https://neuprint.janelia.org" in s.NEUPRINT_SERVER
     assert "europepmc" in s.EUROPE_PMC_BASE_URL.lower()
+    assert hasattr(s, "GRAPH_RAG_MAX_DEPTH")
+    assert hasattr(s, "GRAPH_RAG_MIN_SYNAPSES")
+    assert hasattr(s, "GRAPH_RAG_DEFAULT_TOKEN_BUDGET")
 
 
 def test_cors_origins_type():

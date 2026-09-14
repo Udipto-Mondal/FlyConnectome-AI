@@ -40,7 +40,7 @@ class SynthesisAgent:
         if paths:
             primary_path_str = " ➔ ".join(paths[0]["node_names"])
             total_synapses = paths[0]["total_synapses"]
-            hops = paths[0]["hops"]
+            hops = paths[0].get("hops", max(1, len(paths[0].get("node_ids", [])) - 1))
 
         # Build Markdown Document
         report_lines = []
@@ -67,9 +67,9 @@ class SynthesisAgent:
         if paths:
             report_lines.append("| Hop | Presynaptic Neuron | Postsynaptic Target | Synapse Count | Connection Type |")
             report_lines.append("|:---:|:---|:---|:---:|:---|")
-            for idx, step in enumerate(paths[0]["steps"], 1):
+            for idx, step in enumerate(paths[0].get("steps", []), 1):
                 report_lines.append(
-                    f"| {idx} | **{step['from_name']}** | **{step['to_name']}** | `{step['synapses']}` | *{step['type']}* |"
+                    f"| {idx} | **{step.get('from_name', 'Unknown')}** | **{step.get('to_name', 'Unknown')}** | `{step.get('synapses', 0)}` | *{step.get('type', 'chemical')}* |"
                 )
 
         # 3. Bottlenecks & Critical Nodes

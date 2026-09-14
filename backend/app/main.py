@@ -83,7 +83,10 @@ def root(request: Request):
             "neurons": "/api/neurons",
             "stats": "/api/stats",
             "discover": "/api/discover",
-            "ablate": "/api/ablate"
+            "ablate": "/api/ablate",
+            "graph_rag_retrieve": "/api/v1/graph-rag/retrieve",
+            "graph_rag_context": "/api/v1/graph-rag/format-context",
+            "graph_rag_status": "/api/v1/graph-rag/status"
         }
     }
 
@@ -140,8 +143,8 @@ def platform_info():
             "Tier C: Computational Inference (Deterministic Graph Algorithms / In-Silico Ablation)"
         ],
         "roadmap": {
-            "current_phase": "Phase 3 — Graph Engine & Graph Algorithms",
-            "next_phase": "Phase 4 — Graph-RAG Retrieval System"
+            "current_phase": "Phase 4 — Graph-RAG Retrieval System",
+            "next_phase": "Phase 5 — Planner Agent & Orchestrator"
         }
     }
 
